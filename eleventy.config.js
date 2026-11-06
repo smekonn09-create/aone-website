@@ -17,6 +17,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("pillClass", (status) => {
     const map = {
       "For Sale": "available",
+      "Coming Soon": "soon",
       "Under Construction": "building",
       "Completed": "done",
       "Upcoming": "planning",

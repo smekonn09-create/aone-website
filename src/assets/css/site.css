@@ -268,3 +268,9 @@ section.blk-tight{padding:40px 0}
 .foot-links a{color:#d8dce1;text-decoration:none}
 .foot-links a:hover{color:#fff}
 .proj .where{text-transform:uppercase}
+.pill.soon{background:var(--ink);color:var(--amber);border:1px solid var(--amber)}
+.floorplans{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.floorplans figure{margin:0;background:#fff;border:1px solid var(--line);padding:12px}
+.floorplans .g-item{aspect-ratio:auto;background:#fff;cursor:zoom-in;width:100%}
+.floorplans .g-item img{object-fit:contain;height:auto}
+.floorplans figcaption{font:500 12px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-top:10px;text-align:center}

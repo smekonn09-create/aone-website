@@ -22,6 +22,14 @@ layout: base.njk
         {% else %}{% set kind = type | drawingFor %}{% include "partials/drawing.njk" %}{% endif %}
       </div>
       {% if content | trim %}<div class="prose">{{ content | safe }}</div>{% endif %}
+      {% if floor_plans and floor_plans.length %}
+      <h2 class="gallery-title">Floor plans</h2>
+      <div class="floorplans">
+        {% for f in floor_plans %}{% if f.image %}
+        <figure><button type="button" class="g-item" data-full="{{ f.image }}" data-caption="{{ f.caption or 'Floor plan' }}"><img src="{{ f.image }}" alt="{{ f.caption or 'Floor plan' }}" loading="lazy"></button>{% if f.caption %}<figcaption>{{ f.caption }}</figcaption>{% endif %}</figure>
+        {% endif %}{% endfor %}
+      </div>
+      {% endif %}
       {% if gallery and gallery.length %}
       <h2 class="gallery-title">Photos</h2>
       <div class="gallery">

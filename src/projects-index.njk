@@ -14,7 +14,7 @@ permalink: /projects/
   <div class="wrap">
     <div class="filters" role="group" aria-label="Filter projects">
       <button type="button" class="chip on" data-filter="">All</button>
-      {% for s in ["For Sale", "Under Construction", "Upcoming", "Completed", "Sold"] %}
+      {% for s in ["For Sale", "Coming Soon", "Under Construction", "Upcoming", "Completed", "Sold"] %}
       {% if collections.projects | byStatus([s]) | length %}<button type="button" class="chip" data-filter="{{ s }}">{{ s }}</button>{% endif %}
       {% endfor %}
     </div>
