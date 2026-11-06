@@ -14,11 +14,17 @@ highlights:
   - Private bath per bedroom
   - Option to finish to 5 bed / 5 bath
   - ~23.5' × 75' lot
-main_photo: /images/uploads/216-maple-front.webp
-gallery: []
+main_photo: /images/uploads/01_Exterior.jpg
+gallery:
+  - image: /images/uploads/01_Exterior.jpg
+    caption: Exterior rendering
+  - image: /images/uploads/02_Kitchen_Living.jpg
+    caption: Kitchen and living rendering
+  - image: /images/uploads/03_Bedroom.jpg
+    caption: Bedroom rendering
+  - image: /images/uploads/04_Bathroom.jpg
+    caption: Bathroom rendering
 floor_plans:
-  - image: /images/uploads/216-maple-floor-plan-lower.png
-    caption: Lower level
   - image: /images/uploads/216-maple-floor-plan-main.png
     caption: Main level
   - image: /images/uploads/216-maple-floor-plan-upper.png
