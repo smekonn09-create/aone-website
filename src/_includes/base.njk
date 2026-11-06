@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if title and page.url != "/" %}{{ title }} · {% endif %}{{ site.name }}</title>
+<meta name="description" content="{{ seo_description or summary or site.seo_description }}">
+<link rel="icon" href="/images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="{{ site.name }} home">
+      <img src="/images/logo.png" alt="" width="46" height="46">
+      <span class="brand-word"><b>Aone</b><span>DEVELOPMENT</span></span>
+    </a>
+    <ul id="nav-links">
+      {%- for item in site.nav %}
+      <li><a href="{{ item.link }}">{{ item.label }}</a></li>
+      {%- endfor %}
+    </ul>
+    <div class="nav-right">
+      {% if site.nav_button and site.nav_button.label %}<a class="btn btn-amber nav-cta" href="{{ site.nav_button.link }}">{{ site.nav_button.label }}</a>{% endif %}
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+{{ content | safe }}
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© {{ "" | year }} {{ site.footer_left }}</span>
+    {% if site.footer_links and site.footer_links.length %}
+    <span class="foot-links">{% for l in site.footer_links %}<a href="{{ l.link }}">{{ l.label }}</a>{% endfor %}</span>
+    {% endif %}
+    <span>{{ site.footer_right }}</span>
+  </div>
+</footer>
+
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

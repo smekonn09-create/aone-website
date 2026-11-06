@@ -1,0 +1,138 @@
+---
+layout: base.njk
+---
+{#- Builds a page from the blocks added in the admin panel. Every block reuses the site's existing styles. -#}
+{%- for b in blocks %}
+{%- set bg = b.background or "cream" -%}
+{%- set dark = (bg == "green") -%}
+{%- set cls = "blk blk-" ~ bg ~ (" dark" if dark else "") -%}
+{%- set anchor = b.anchor -%}
+
+{%- if b.type == "hero" %}
+<section class="page-hero dark{% if b.image %} has-image{% endif %}"{% if anchor %} id="{{ anchor }}"{% endif %}>
+  <div class="wrap{% if b.image %} hero-grid{% endif %}">
+    <div>
+      {% if b.eyebrow %}<p class="eyebrow">{{ b.eyebrow }}</p>{% endif %}
+      <h1>{{ b.heading or title }}</h1>
+      {% if b.text %}<p class="lede">{{ b.text }}</p>{% endif %}
+      {% if b.buttons and b.buttons.length %}<div class="hero-ctas">{% set buttons = b.buttons %}{% set dark = true %}{% include "partials/buttons.njk" %}</div>{% endif %}
+    </div>
+    {% if b.image %}<figure class="hero-art" style="margin:0"><img class="hero-photo" src="{{ b.image }}" alt="{{ b.heading }}"></figure>{% endif %}
+  </div>
+</section>
+
+{%- elif b.type == "text" %}
+<section class="{{ cls }}"{% if anchor %} id="{{ anchor }}"{% endif %}>
+  <div class="wrap{% if b.image %} split split-{{ b.image_side or 'right' }}{% endif %}">
+    <div>
+      {% if b.eyebrow or b.heading %}<div class="section-head">
+        {% if b.eyebrow %}<p class="eyebrow">{{ b.eyebrow }}</p>{% endif %}
+        {% if b.heading %}<h2>{{ b.heading }}</h2>{% endif %}
+      </div>{% endif %}
+      <div class="prose">{{ b.body | md | safe }}</div>
+      {% if b.buttons and b.buttons.length %}<div class="btn-row">{% set buttons = b.buttons %}{% include "partials/buttons.njk" %}</div>{% endif %}
+    </div>
+    {% if b.image %}<figure class="split-img"><img src="{{ b.image }}" alt="{{ b.heading }}" loading="lazy"></figure>{% endif %}
+  </div>
+</section>
+
+{%- elif b.type == "image" %}
+<section class="{{ cls }} blk-tight"{% if anchor %} id="{{ anchor }}"{% endif %}>
+  <figure class="wrap blk-image{% if b.full_width %} full{% endif %}">
+    <img src="{{ b.image }}" alt="{{ b.caption or title }}" loading="lazy">
+    {% if b.caption %}<figcaption>{{ b.caption }}</figcaption>{% endif %}
+  </figure>
+</section>
+
+{%- elif b.type == "buttons" %}
+<section class="{{ cls }} blk-tight"{% if anchor %} id="{{ anchor }}"{% endif %}>
+  <div class="wrap">
+    {% if b.heading %}<h2 class="blk-small-h">{{ b.heading }}</h2>{% endif %}
+    <div class="btn-row">{% set buttons = b.buttons %}{% include "partials/buttons.njk" %}</div>
+  </div>
+</section>
+
+{%- elif b.type == "cards" %}
+<section class="{{ cls }}"{% if anchor %} id="{{ anchor }}"{% endif %}>
+  <div class="wrap">
+    {% include "partials/block-head.njk" %}
+    <div class="svc-grid">
+      {% for s in b.items %}
+      <div class="svc">
+        {% set icon = s.icon %}{% include "partials/icon.njk" %}
+        <h3>{{ s.title }}</h3>
+        {% if s.text %}<p>{{ s.text }}</p>{% endif %}
+        {% if s.link %}<a class="more" href="{{ s.link }}">{{ s.link_label or "Learn more" }} →</a>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{%- elif b.type == "panels" %}
+<section class="{{ cls }} partners-like"{% if anchor %} id="{{ anchor }}"{% endif %}>
+  <div class="wrap">
+    {% include "partials/block-head.njk" %}
+    <div class="partner-grid">
+      {% for pn in b.panels %}{% include "partials/panel.njk" %}{% endfor %}
+    </div>
+  </div>
+</section>
+
+{%- elif b.type == "steps" %}
+<section class="{{ cls }}"{% if anchor %} id="{{ anchor }}"{% endif %}>
+  <div class="wrap">
+    {% include "partials/block-head.njk" %}
+    <div class="steps">
+      {% for s in b.steps %}<div class="step"><span class="n">{{ s.title }}</span><p>{{ s.text }}</p></div>{% endfor %}
+    </div>
+  </div>
+</section>
+
+{%- elif b.type == "projects" %}
+<section class="{{ cls }} projects"{% if anchor %} id="{{ anchor }}"{% endif %}>
+  <div class="wrap">
+    {% include "partials/block-head.njk" %}
+    <div class="proj-grid">
+      {% for proj in collections.projects | byStatus(b.statuses) | limit(b.how_many) %}{% include "partials/project-card.njk" %}{% endfor %}
+    </div>
+    <p class="see-all"><a class="btn btn-outline" href="/projects/">See all projects</a></p>
+  </div>
+</section>
+
+{%- elif b.type == "downloads" %}
+<section class="{{ cls }}"{% if anchor %} id="{{ anchor }}"{% endif %}>
+  <div class="wrap">
+    {% include "partials/block-head.njk" %}
+    <ul class="downloads">
+      {% for d in collections.downloads | byCategory(b.category) %}{% if d.data.file %}
+      <li><a href="{{ d.data.file }}" download><span class="dl-ico" aria-hidden="true">PDF</span><span><b>{{ d.data.title }}</b>{% if d.data.description %}<small>{{ d.data.description }}</small>{% endif %}</span><span class="dl-go">Download ↓</span></a></li>
+      {% endif %}{% endfor %}
+    </ul>
+  </div>
+</section>
+
+{%- elif b.type == "form" %}
+<section class="{{ cls }}" id="{{ anchor or 'contact' }}">
+  <div class="wrap contact-grid">
+    <div class="contact-card">
+      <div class="section-head" style="margin-bottom:8px">
+        {% if b.eyebrow %}<p class="eyebrow">{{ b.eyebrow }}</p>{% endif %}
+        {% if b.heading %}<h2>{{ b.heading }}</h2>{% endif %}
+        {% if b.text %}<p>{{ b.text }}</p>{% endif %}
+      </div>
+      {% if b.show_contact_info != false %}{% include "partials/contact-lines.njk" %}{% endif %}
+    </div>
+    {% set topic = b.topic %}{% include "partials/form.njk" %}
+  </div>
+</section>
+
+{%- elif b.type == "video" %}
+<section class="{{ cls }} blk-tight"{% if anchor %} id="{{ anchor }}"{% endif %}>
+  <div class="wrap">
+    {% if b.heading %}<h2 class="blk-small-h">{{ b.heading }}</h2>{% endif %}
+    <div class="video"><iframe src="{{ b.url | replace('watch?v=', 'embed/') | replace('youtu.be/', 'www.youtube.com/embed/') }}" title="{{ b.heading or 'Video' }}" allowfullscreen loading="lazy"></iframe></div>
+  </div>
+</section>
+{%- endif %}
+{%- endfor %}

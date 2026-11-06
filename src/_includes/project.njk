@@ -1,0 +1,54 @@
+---
+layout: base.njk
+---
+{%- set p = { title: title, address: address, neighborhood: neighborhood, status: status, type: type, price: "", beds: beds, baths: baths, sqft: sqft, highlights: highlights } -%}
+<section class="page-hero dark">
+  <div class="wrap">
+    <p class="eyebrow"><a href="/projects/" class="crumb">Projects</a> · {{ address }}{% if neighborhood %} · {{ neighborhood }}{% endif %}</p>
+    <h1>{{ title }}</h1>
+    <div class="proj-meta">
+      <span class="pill static {{ status | pillClass }}">{{ status }}</span>
+      {% if type %}<span class="meta-type">{{ type }}</span>{% endif %}
+    </div>
+    {% if summary %}<p class="lede">{{ summary }}</p>{% endif %}
+  </div>
+</section>
+
+<section class="proj-detail">
+  <div class="wrap detail-grid">
+    <div class="detail-main">
+      <div class="detail-photo{% if not main_photo %} draw{% endif %}">
+        {% if main_photo %}<img src="{{ main_photo }}" alt="{{ title }}">
+        {% else %}{% set kind = type | drawingFor %}{% include "partials/drawing.njk" %}{% endif %}
+      </div>
+      {% if content | trim %}<div class="prose">{{ content | safe }}</div>{% endif %}
+      {% if gallery and gallery.length %}
+      <h2 class="gallery-title">Photos</h2>
+      <div class="gallery">
+        {% for g in gallery %}{% set src = g.image or g %}{% if src %}
+        <button type="button" class="g-item" data-full="{{ src }}" data-caption="{{ g.caption or '' }}"><img src="{{ src }}" alt="{{ g.caption or title }}" loading="lazy"></button>
+        {% endif %}{% endfor %}
+      </div>
+      {% endif %}
+    </div>
+    <aside class="detail-side">
+      <div class="side-card">
+        {% if price %}<p class="side-price">{{ price }}</p>{% endif %}
+        {% include "partials/specs.njk" %}
+        <div class="side-actions">
+          <a class="btn btn-amber" href="/?topic={% if status == 'For Sale' %}Buying%20a%20home{% else %}Investing{% endif %}&about={{ address | urlencode }}#contact">Ask about this project</a>
+          {% if link_url %}<a class="btn btn-outline" href="{{ link_url }}" target="_blank" rel="noopener">{{ link_label or "More info" }}</a>{% endif %}
+          {% if one_pager %}<a class="btn btn-outline" href="{{ one_pager }}" download>Download one-pager (PDF)</a>{% endif %}
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<dialog class="lightbox" aria-label="Photo viewer">
+  <button type="button" class="lb-close" aria-label="Close">×</button>
+  <button type="button" class="lb-prev" aria-label="Previous photo">‹</button>
+  <img alt="">
+  <button type="button" class="lb-next" aria-label="Next photo">›</button>
+  <p class="lb-cap"></p>
+</dialog>

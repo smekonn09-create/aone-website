@@ -1,0 +1,410 @@
+# Admin panel settings for aonedevelopment.com
+# Admin panel connects to the GitHub repository below.
+
+backend:
+  name: github
+  repo: smekonn09-create/aone-website
+  branch: main
+  commit_messages:
+    create: "Add {{collection}} “{{slug}}”"
+    update: "Update {{collection}} “{{slug}}”"
+    delete: "Delete {{collection}} “{{slug}}”"
+    uploadMedia: "Upload “{{path}}”"
+    deleteMedia: "Delete “{{path}}”"
+
+site_url: https://aonedevelopment.com
+display_url: https://aonedevelopment.com
+logo:
+  src: /images/logo.png
+
+media_folder: src/images/uploads
+public_folder: /images/uploads
+
+# Phone photos are shrunk and converted automatically so the site stays fast.
+media_libraries:
+  default:
+    config:
+      max_file_size: 30000000
+      slugify_filename: true
+      transformations:
+        raster_image:
+          format: webp
+          quality: 82
+          width: 2200
+          height: 2200
+
+collections:
+  # ---------------------------------------------------------------- PROJECTS
+  - name: projects
+    label: Projects
+    label_singular: Project
+    description: Homes and developments shown on the site. Turn on “Featured” to show a project first.
+    folder: src/projects
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    slug: "{{fields.address}}"
+    summary: "{{address}} · {{title}} · {{status}}"
+    sortable_fields: [order, title, status, address]
+    view_groups:
+      - label: Status
+        field: status
+    fields:
+      - { label: Project name, name: title, widget: string, hint: "Example: Three-level single-family home" }
+      - { label: Address, name: address, widget: string, hint: "Example: 216 Maple Pl NW. This also becomes the page link." }
+      - { label: Neighborhood / city, name: neighborhood, widget: string, required: false, hint: "Example: Vine City" }
+      - label: Status
+        name: status
+        widget: select
+        options: [Upcoming, Under Construction, For Sale, Completed, Sold]
+        default: Upcoming
+      - label: Project type
+        name: type
+        widget: select
+        options: [Single-family, Duplex, Stacked duplex, Townhomes, Subdivision / Lots, Build-to-rent, Multifamily, Other]
+        default: Single-family
+      - { label: Short description, name: summary, widget: text, hint: "1–3 sentences. Shows on the project card." }
+      - { label: Price, name: price, widget: string, required: false, hint: "Optional. Example: $489,000 or “Call for pricing”" }
+      - { label: Beds, name: beds, widget: number, value_type: float, required: false }
+      - { label: Baths, name: baths, widget: number, value_type: float, required: false }
+      - { label: Square feet, name: sqft, widget: string, required: false, hint: "Example: 2,150" }
+      - label: Highlights
+        name: highlights
+        widget: list
+        required: false
+        hint: "Short tags shown under the description. Example: 3 levels, Private bath per bedroom"
+        field: { label: Highlight, name: highlight, widget: string }
+      - { label: Main photo, name: main_photo, widget: image, required: false, hint: "Optional. Without a photo the card shows the gold line drawing." }
+      - label: Photo gallery
+        name: gallery
+        widget: list
+        required: false
+        summary: "{{fields.caption}}"
+        fields:
+          - { label: Photo, name: image, widget: image }
+          - { label: Caption, name: caption, widget: string, required: false }
+      - { label: Full description, name: body, widget: markdown, required: false, hint: "Optional. Longer write-up shown on the project's own page." }
+      - { label: Extra link button text, name: link_label, widget: string, required: false, hint: "Example: View the listing, Watch the video" }
+      - { label: Extra link URL, name: link_url, widget: string, required: false, hint: "Paste the full link, starting with https://" }
+      - { label: One-pager (PDF), name: one_pager, widget: file, required: false, hint: "Optional. Visitors can download it from the project page." }
+      - { label: Featured (show first), name: featured, widget: boolean, default: false }
+      - { label: Order, name: order, widget: number, value_type: int, default: 10, hint: "Lower numbers show first. Featured projects always come before the rest." }
+      - { label: Hide from website, name: hidden, widget: boolean, default: false, required: false, hint: "Turn on to take a project offline without deleting it." }
+
+  # ---------------------------------------------------------------- PAGES
+  - name: pages
+    label: Pages
+    label_singular: Page
+    description: Extra pages like Investors, Lenders or Build With Us. Each page is made of blocks. After you create a page, add it to the menu under Site settings → Menu.
+    folder: src/pages
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    slug: "{{fields.title}}"
+    summary: "{{title}}  →  aonedevelopment.com/{{slug}}"
+    fields:
+      - { label: Page name, name: title, widget: string, hint: "Also becomes the page link. “Build With Us” → aonedevelopment.com/build-with-us" }
+      - { label: Google description, name: seo_description, widget: text, required: false, hint: "Optional. One sentence shown in Google results." }
+      - label: Page blocks
+        name: blocks
+        widget: list
+        hint: "Add blocks from top to bottom. Use the arrows to reorder."
+        typeKey: type
+        types:
+          - label: Page header (green)
+            name: hero
+            summary: "Header: {{fields.heading}}"
+            fields:
+              - { label: Small gold label, name: eyebrow, widget: string, required: false }
+              - { label: Big headline, name: heading, widget: string }
+              - { label: Text, name: text, widget: text, required: false }
+              - { label: "Photo (optional, shows on the right)", name: image, widget: image, required: false }
+              - &buttons
+                label: Buttons
+                name: buttons
+                widget: list
+                required: false
+                summary: "{{fields.label}} → {{fields.link}}"
+                fields:
+                  - { label: Button text, name: label, widget: string }
+                  - { label: Link, name: link, widget: string, required: false, hint: "A page (/investors/), a section (#contact), or a full link (https://…)" }
+                  - { label: Or a file to download (PDF), name: file, widget: file, required: false }
+                  - { label: Style, name: style, widget: select, options: [{ label: Gold, value: gold }, { label: Outline, value: outline }], default: gold }
+                  - { label: Open in new tab, name: new_tab, widget: boolean, default: false, required: false }
+          - label: Text section
+            name: text
+            summary: "Text: {{fields.heading}}"
+            fields:
+              - &background { label: Background, name: background, widget: select, options: [{ label: Cream, value: cream }, { label: White, value: white }, { label: Green, value: green }], default: cream }
+              - { label: Small gold label, name: eyebrow, widget: string, required: false }
+              - { label: Heading, name: heading, widget: string, required: false }
+              - { label: Text, name: body, widget: markdown, hint: "Use the toolbar for bold, lists, links and subheadings." }
+              - { label: Photo (optional), name: image, widget: image, required: false }
+              - { label: Photo side, name: image_side, widget: select, options: [right, left], default: right, required: false }
+              - *buttons
+              - &anchor { label: Section ID (optional), name: anchor, widget: string, required: false, hint: "Advanced. Lets a button jump here, e.g. type “terms” and link to #terms" }
+          - label: Photo
+            name: image
+            summary: "Photo: {{fields.caption}}"
+            fields:
+              - *background
+              - { label: Photo, name: image, widget: image }
+              - { label: Caption, name: caption, widget: string, required: false }
+              - { label: Full width, name: full_width, widget: boolean, default: false, required: false }
+          - label: Buttons
+            name: buttons
+            summary: "Buttons"
+            fields:
+              - *background
+              - { label: Heading (optional), name: heading, widget: string, required: false }
+              - *buttons
+          - label: Feature cards (icons)
+            name: cards
+            summary: "Cards: {{fields.heading}}"
+            fields:
+              - *background
+              - { label: Small gold label, name: eyebrow, widget: string, required: false }
+              - { label: Heading, name: heading, widget: string, required: false }
+              - { label: Intro text, name: intro, widget: text, required: false }
+              - label: Cards
+                name: items
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - &icon { label: Icon, name: icon, widget: select, options: [{ label: House, value: house }, { label: Duplex, value: duplex }, { label: Lots, value: lots }, { label: Grid / units, value: grid }, { label: Key, value: key }, { label: Money, value: money }, { label: No icon, value: none }], default: house }
+                  - { label: Title, name: title, widget: string }
+                  - { label: Text, name: text, widget: text, required: false }
+                  - { label: Link (optional), name: link, widget: string, required: false }
+                  - { label: Link text, name: link_label, widget: string, required: false }
+          - label: Checklist panels (like Investors / Lenders)
+            name: panels
+            summary: "Panels: {{fields.heading}}"
+            fields:
+              - { label: Background, name: background, widget: select, options: [{ label: Green, value: green }, { label: Cream, value: cream }, { label: White, value: white }], default: green }
+              - { label: Small gold label, name: eyebrow, widget: string, required: false }
+              - { label: Heading, name: heading, widget: string, required: false }
+              - { label: Intro text, name: intro, widget: text, required: false }
+              - &panels
+                label: Panels
+                name: panels
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Text, name: text, widget: text, required: false }
+                  - { label: Checklist, name: checks, widget: list, required: false, field: { label: Item, name: item, widget: string } }
+                  - { label: Button text, name: button_label, widget: string, required: false }
+                  - { label: Button link, name: button_link, widget: string, required: false, default: "#contact" }
+                  - { label: Pre-select this form topic, name: form_topic, widget: string, required: false, hint: "Must match a form topic exactly, e.g. Investing" }
+          - label: Steps (numbered process)
+            name: steps
+            summary: "Steps: {{fields.heading}}"
+            fields:
+              - *background
+              - { label: Small gold label, name: eyebrow, widget: string, required: false }
+              - { label: Heading, name: heading, widget: string, required: false }
+              - { label: Intro text, name: intro, widget: text, required: false }
+              - &steps
+                label: Steps
+                name: steps
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: Step name, name: title, widget: string }
+                  - { label: Text, name: text, widget: text }
+          - label: Projects grid
+            name: projects
+            summary: "Projects: {{fields.heading}}"
+            fields:
+              - { label: Background, name: background, widget: select, options: [{ label: White, value: white }, { label: Cream, value: cream }, { label: Green, value: green }], default: white }
+              - { label: Small gold label, name: eyebrow, widget: string, required: false }
+              - { label: Heading, name: heading, widget: string, required: false }
+              - { label: Intro text, name: intro, widget: text, required: false }
+              - { label: Only show these statuses, name: statuses, widget: select, multiple: true, required: false, options: [Upcoming, Under Construction, For Sale, Completed, Sold], hint: "Leave empty to show all." }
+              - { label: How many to show, name: how_many, widget: number, value_type: int, default: 4 }
+          - label: Downloads (PDFs)
+            name: downloads
+            summary: "Downloads: {{fields.heading}}"
+            fields:
+              - *background
+              - { label: Small gold label, name: eyebrow, widget: string, required: false }
+              - { label: Heading, name: heading, widget: string, required: false }
+              - { label: Intro text, name: intro, widget: text, required: false }
+              - { label: Only this category, name: category, widget: string, required: false, hint: "Leave empty to list every download. Add files under Downloads in the left menu." }
+          - label: Contact form
+            name: form
+            summary: "Contact form"
+            fields:
+              - *background
+              - { label: Small gold label, name: eyebrow, widget: string, required: false, default: Contact }
+              - { label: Heading, name: heading, widget: string, required: false }
+              - { label: Text, name: text, widget: text, required: false }
+              - { label: Pre-selected topic, name: topic, widget: string, required: false, hint: "Must match a form topic exactly, e.g. Lending" }
+              - { label: Show phone & email next to the form, name: show_contact_info, widget: boolean, default: true }
+          - label: Video (YouTube)
+            name: video
+            summary: "Video: {{fields.heading}}"
+            fields:
+              - *background
+              - { label: Heading (optional), name: heading, widget: string, required: false }
+              - { label: YouTube link, name: url, widget: string }
+
+  # ---------------------------------------------------------------- DOWNLOADS
+  - name: downloads
+    label: Downloads
+    label_singular: Download
+    description: PDFs people can download (one-pagers, track record, brochures). Show them on any page with a “Downloads” block.
+    folder: src/downloads
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    slug: "{{fields.title}}"
+    summary: "{{title}} · {{category}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: File (PDF), name: file, widget: file }
+      - { label: Short description, name: description, widget: string, required: false }
+      - { label: Category, name: category, widget: string, required: false, default: General, hint: "Example: Investors, Lenders, Projects" }
+      - { label: Order, name: order, widget: number, value_type: int, default: 10 }
+
+  # ---------------------------------------------------------------- HOMEPAGE + SETTINGS
+  - name: settings
+    label: Homepage & settings
+    editor: { preview: false }
+    files:
+      - name: home
+        label: Homepage
+        file: src/_data/home.json
+        format: json
+        fields:
+          - label: Top section
+            name: hero
+            widget: object
+            collapsed: false
+            fields:
+              - { label: Small gold label, name: eyebrow, widget: string }
+              - { label: Headline – start, name: headline_start, widget: string }
+              - { label: Headline – gold italic word, name: headline_gold, widget: string, required: false }
+              - { label: Headline – end, name: headline_end, widget: string }
+              - { label: Text, name: text, widget: text }
+              - *buttons
+              - { label: "Photo (optional, replaces the gold drawing)", name: image, widget: image, required: false }
+              - { label: Caption left, name: caption_left, widget: string, required: false }
+              - { label: Caption right, name: caption_right, widget: string, required: false }
+          - label: “Who we work with” strip
+            name: audiences
+            widget: object
+            fields:
+              - { label: Show this section, name: show, widget: boolean, default: true }
+              - label: Boxes
+                name: items
+                widget: list
+                summary: "{{fields.label}}"
+                fields:
+                  - { label: Small gold label, name: label, widget: string }
+                  - { label: Title, name: title, widget: string }
+                  - { label: Text, name: text, widget: string }
+                  - { label: Link, name: link, widget: string }
+          - label: What we build
+            name: build
+            widget: object
+            fields:
+              - { label: Show this section, name: show, widget: boolean, default: true }
+              - { label: Small gold label, name: eyebrow, widget: string }
+              - { label: Heading, name: heading, widget: string }
+              - { label: Text, name: text, widget: text }
+              - label: Services
+                name: items
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - *icon
+                  - { label: Title, name: title, widget: string }
+                  - { label: Text, name: text, widget: text }
+          - label: Projects section
+            name: projects
+            widget: object
+            hint: "The projects themselves are edited under Projects in the left menu."
+            fields:
+              - { label: Show this section, name: show, widget: boolean, default: true }
+              - { label: Small gold label, name: eyebrow, widget: string }
+              - { label: Heading, name: heading, widget: string }
+              - { label: Text, name: text, widget: text }
+              - { label: How many projects on the homepage, name: how_many, widget: number, value_type: int, default: 4 }
+              - { label: “See all” button text, name: button_label, widget: string, required: false }
+          - label: How we work
+            name: process
+            widget: object
+            fields:
+              - { label: Show this section, name: show, widget: boolean, default: true }
+              - { label: Small gold label, name: eyebrow, widget: string }
+              - { label: Heading, name: heading, widget: string }
+              - { label: Text, name: text, widget: text }
+              - *steps
+          - label: Investors & lenders
+            name: partners
+            widget: object
+            fields:
+              - { label: Show this section, name: show, widget: boolean, default: true }
+              - { label: Small gold label, name: eyebrow, widget: string }
+              - { label: Heading, name: heading, widget: string }
+              - { label: Text, name: text, widget: text }
+              - *panels
+          - label: Contact section
+            name: contact
+            widget: object
+            hint: "Phone and email are edited under Site settings."
+            fields:
+              - { label: Show this section, name: show, widget: boolean, default: true }
+              - { label: Small gold label, name: eyebrow, widget: string }
+              - { label: Heading, name: heading, widget: string }
+              - { label: Text, name: text, widget: text }
+
+      - name: site
+        label: Site settings (menu, contact info, form, footer)
+        file: src/_data/site.json
+        format: json
+        fields:
+          - { label: Company name, name: name, widget: string }
+          - { label: Google description, name: seo_description, widget: text }
+          - { label: Phone, name: phone, widget: string }
+          - { label: Email, name: email, widget: string }
+          - { label: Location, name: location, widget: string }
+          - label: Menu
+            name: nav
+            widget: list
+            hint: "Top menu links, left to right. Link to a page like /investors/ or a homepage section like /#process"
+            summary: "{{fields.label}} → {{fields.link}}"
+            fields:
+              - { label: Text, name: label, widget: string }
+              - { label: Link, name: link, widget: string }
+          - label: Menu button (gold)
+            name: nav_button
+            widget: object
+            fields:
+              - { label: Text, name: label, widget: string }
+              - { label: Link, name: link, widget: string }
+          - label: Contact form
+            name: form
+            widget: object
+            hint: "Form messages are emailed to you by Netlify (set the email address in Netlify → Forms → Notifications)."
+            fields:
+              - { label: “I'm interested in” choices, name: topics, widget: list, field: { label: Choice, name: topic, widget: string } }
+              - { label: Message box label, name: message_label, widget: string }
+              - { label: Message box hint, name: message_placeholder, widget: string, required: false }
+              - { label: Send button text, name: button_label, widget: string }
+              - { label: Note under the button, name: note, widget: string, required: false }
+              - { label: Message after sending, name: success_message, widget: string }
+          - { label: Footer left text, name: footer_left, widget: string }
+          - { label: Footer right text, name: footer_right, widget: string }
+          - label: Footer links
+            name: footer_links
+            widget: list
+            required: false
+            summary: "{{fields.label}}"
+            fields:
+              - { label: Text, name: label, widget: string }
+              - { label: Link, name: link, widget: string }

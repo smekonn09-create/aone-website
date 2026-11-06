@@ -1,0 +1,152 @@
+---
+layout: base.njk
+permalink: /
+---
+{%- set h = home.hero -%}
+<section class="hero dark">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">{{ h.eyebrow }}</p>
+      <h1>{{ h.headline_start }} {% if h.headline_gold %}<em>{{ h.headline_gold }}</em> {% endif %}{{ h.headline_end }}</h1>
+      <p class="lede">{{ h.text }}</p>
+      <div class="hero-ctas">{% set buttons = h.buttons %}{% set dark = true %}{% include "partials/buttons.njk" %}</div>
+    </div>
+    <figure class="hero-art" style="margin:0">
+      {% if h.image %}
+      <img class="hero-photo" src="{{ h.image }}" alt="{{ h.caption_left }}">
+      {% else %}
+      <svg viewBox="0 0 520 380" role="img" aria-label="Front elevation drawing of a three-level infill home">
+        <g fill="none" stroke="#c9a961" stroke-width="1.6">
+          <line x1="20" y1="350" x2="500" y2="350" stroke-width="2"/>
+          <rect x="150" y="120" width="220" height="230"/>
+          <line x1="150" y1="200" x2="370" y2="200"/>
+          <line x1="150" y1="280" x2="370" y2="280"/>
+          <polyline points="140,120 380,120 380,108 140,108 140,120"/>
+          <rect x="300" y="60" width="80" height="48"/>
+          <rect x="172" y="138" width="56" height="46"/><line x1="200" y1="138" x2="200" y2="184"/>
+          <rect x="250" y="138" width="98" height="46"/><line x1="299" y1="138" x2="299" y2="184"/>
+          <rect x="172" y="216" width="40" height="64" fill="#d1aa58" fill-opacity=".14" stroke="#d1aa58"/>
+          <circle cx="205" cy="250" r="2" fill="#d1aa58" stroke="none"/>
+          <rect x="234" y="218" width="114" height="44"/><line x1="272" y1="218" x2="272" y2="262"/><line x1="310" y1="218" x2="310" y2="262"/>
+          <rect x="172" y="296" width="56" height="34"/>
+          <rect x="250" y="296" width="98" height="34"/><line x1="299" y1="296" x2="299" y2="330"/>
+          <polyline points="150,280 130,280 130,290 120,290 120,300 110,300 110,310"/>
+          <g stroke-width=".7" opacity=".45">
+            <line x1="236" y1="120" x2="236" y2="200"/><line x1="356" y1="200" x2="356" y2="280"/>
+          </g>
+          <circle cx="440" cy="270" r="38" stroke-dasharray="3 4"/><line x1="440" y1="308" x2="440" y2="350"/>
+          <circle cx="70" cy="290" r="26" stroke-dasharray="3 4"/><line x1="70" y1="316" x2="70" y2="350"/>
+        </g>
+        <g stroke="#d1aa58" stroke-width="1" fill="#d1aa58" font-family="Montserrat, Arial, sans-serif" font-size="12">
+          <line x1="150" y1="370" x2="370" y2="370"/><line x1="150" y1="362" x2="150" y2="378"/><line x1="370" y1="362" x2="370" y2="378"/>
+          <text x="260" y="366" text-anchor="middle" stroke="none">23'-6" LOT WIDTH</text>
+          <line x1="400" y1="120" x2="400" y2="350" opacity=".9"/><line x1="392" y1="120" x2="408" y2="120"/><line x1="392" y1="200" x2="408" y2="200"/><line x1="392" y1="280" x2="408" y2="280"/><line x1="392" y1="350" x2="408" y2="350"/>
+          <text x="414" y="164" stroke="none">UPPER</text><text x="414" y="244" stroke="none">MAIN</text><text x="414" y="320" stroke="none">LOWER</text>
+        </g>
+      </svg>
+      {% endif %}
+      <figcaption><span>{{ h.caption_left }}</span><span>{{ h.caption_right }}</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+{% if home.audiences.show %}
+<nav class="audiences dark" aria-label="Who we work with">
+  <div class="wrap aud-grid" style="padding:0">
+    {% for a in home.audiences.items %}
+    <a class="aud" href="{{ a.link }}"><span class="k">{{ a.label }}</span><h3>{{ a.title }}</h3><p>{{ a.text }}</p></a>
+    {% endfor %}
+  </div>
+</nav>
+{% endif %}
+
+{% if home.build.show %}
+<section id="build">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">{{ home.build.eyebrow }}</p>
+      <h2>{{ home.build.heading }}</h2>
+      <p>{{ home.build.text }}</p>
+    </div>
+    <div class="svc-grid">
+      {% for s in home.build.items %}
+      <div class="svc">
+        {% set icon = s.icon %}{% include "partials/icon.njk" %}
+        <h3>{{ s.title }}</h3>
+        <p>{{ s.text }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if home.projects.show %}
+<section id="projects" class="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">{{ home.projects.eyebrow }}</p>
+      <h2>{{ home.projects.heading }}</h2>
+      <p>{{ home.projects.text }}</p>
+    </div>
+    <div class="proj-grid">
+      {% for proj in collections.projects | limit(home.projects.how_many) %}
+        {% include "partials/project-card.njk" %}
+      {% endfor %}
+    </div>
+    {% if collections.projects.length > home.projects.how_many and home.projects.button_label %}
+    <p class="see-all"><a class="btn btn-outline" href="/projects/">{{ home.projects.button_label }}</a></p>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
+
+{% if home.process.show %}
+<section id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">{{ home.process.eyebrow }}</p>
+      <h2>{{ home.process.heading }}</h2>
+      <p>{{ home.process.text }}</p>
+    </div>
+    <div class="steps">
+      {% for s in home.process.steps %}
+      <div class="step"><span class="n">{{ s.title }}</span><p>{{ s.text }}</p></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if home.partners.show %}
+<section id="partners" class="partners dark">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">{{ home.partners.eyebrow }}</p>
+      <h2>{{ home.partners.heading }}</h2>
+      <p style="color:#cfd3d8">{{ home.partners.text }}</p>
+    </div>
+    <div class="partner-grid">
+      {% for pn in home.partners.panels %}
+      {% include "partials/panel.njk" %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if home.contact.show %}
+<section id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-card">
+      <div class="section-head" style="margin-bottom:8px">
+        <p class="eyebrow">{{ home.contact.eyebrow }}</p>
+        <h2>{{ home.contact.heading }}</h2>
+        <p>{{ home.contact.text }}</p>
+      </div>
+      {% include "partials/contact-lines.njk" %}
+    </div>
+    {% include "partials/form.njk" %}
+  </div>
+</section>
+{% endif %}

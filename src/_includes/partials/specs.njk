@@ -1,0 +1,9 @@
+{%- if p.price or p.beds or p.baths or p.sqft or (p.highlights and p.highlights.length) %}
+<ul class="specs">
+  {% if p.price %}<li class="price">{{ p.price }}</li>{% endif %}
+  {% if p.beds %}<li>{{ p.beds }} bed</li>{% endif %}
+  {% if p.baths %}<li>{{ p.baths }} bath</li>{% endif %}
+  {% if p.sqft %}<li>{{ p.sqft }} sq ft</li>{% endif %}
+  {% for h in p.highlights %}{% if h %}<li>{{ h }}</li>{% endif %}{% endfor %}
+</ul>
+{% endif -%}

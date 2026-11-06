@@ -1,0 +1,7 @@
+{% if b.eyebrow or b.heading or b.intro %}
+<div class="section-head">
+  {% if b.eyebrow %}<p class="eyebrow">{{ b.eyebrow }}</p>{% endif %}
+  {% if b.heading %}<h2>{{ b.heading }}</h2>{% endif %}
+  {% if b.intro %}<p>{{ b.intro }}</p>{% endif %}
+</div>
+{% endif %}

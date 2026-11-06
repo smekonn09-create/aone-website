@@ -1,0 +1,1 @@
+{%- for b in buttons %}{% if b.label %}<a class="btn {% if b.style == 'outline' %}{% if dark %}btn-ghost{% else %}btn-outline{% endif %}{% else %}btn-amber{% endif %}" href="{{ b.link or b.file }}"{% if b.file %} download{% endif %}{% if b.new_tab %} target="_blank" rel="noopener"{% endif %}>{{ b.label }}</a>{% endif %}{% endfor -%}

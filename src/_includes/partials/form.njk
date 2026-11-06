@@ -1,0 +1,20 @@
+{#- Contact form. Netlify collects every submission and emails it to you. Optional: `topic` preselects a choice. -#}
+<form class="contact-form" name="contact" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="company">
+  <input type="hidden" name="form-name" value="contact">
+  <p class="hp" aria-hidden="true"><label>Leave this empty<input name="company" tabindex="-1" autocomplete="off"></label></p>
+  <input type="hidden" name="page" value="{{ page.url }}">
+  <div class="row">
+    <label>Name<input name="name" autocomplete="name" required></label>
+    <label>Phone<input name="phone" type="tel" autocomplete="tel"></label>
+  </div>
+  <label>Email<input name="email" type="email" autocomplete="email" required></label>
+  <label>I'm interested in
+    <select name="topic" class="f-topic">
+      {% for t in site.form.topics %}<option{% if t == topic %} selected{% endif %}>{{ t }}</option>{% endfor %}
+    </select>
+  </label>
+  <label>{{ site.form.message_label }}<textarea name="message" placeholder="{{ site.form.message_placeholder }}"></textarea></label>
+  <button class="btn btn-amber" type="submit" style="justify-self:start">{{ site.form.button_label }}</button>
+  {% if site.form.note %}<p class="form-note">{{ site.form.note }}</p>{% endif %}
+  <p class="form-done" role="status" data-success="{{ site.form.success_message }}"></p>
+</form>

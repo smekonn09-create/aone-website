@@ -1,0 +1,3 @@
+{% if site.phone %}<div class="contact-line"><span class="k">Call or text</span><a href="{{ site.phone | telHref }}">{{ site.phone }}</a></div>{% endif %}
+{% if site.email %}<div class="contact-line"><span class="k">Email</span><a href="mailto:{{ site.email }}">{{ site.email }}</a></div>{% endif %}
+{% if site.location %}<div class="contact-line"><span class="k">Based in</span><span>{{ site.location }}</span></div>{% endif %}

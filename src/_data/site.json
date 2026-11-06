@@ -1,0 +1,25 @@
+{
+  "name": "Aone Development",
+  "seo_description": "Aone Development builds new single-family homes, duplexes and small subdivisions in intown Atlanta. Building for investors, home buyers, landowners and lenders.",
+  "phone": "(424) 200-9767",
+  "email": "aonebuild48@gmail.com",
+  "location": "Atlanta, Georgia",
+  "nav": [
+    { "label": "What we build", "link": "/#build" },
+    { "label": "Projects", "link": "/projects/" },
+    { "label": "How we work", "link": "/#process" },
+    { "label": "Investors & lenders", "link": "/#partners" }
+  ],
+  "nav_button": { "label": "Contact us", "link": "/#contact" },
+  "form": {
+    "topics": ["Investing", "Buying a home", "Hiring a builder", "Lending", "Something else"],
+    "message_label": "Project details",
+    "message_placeholder": "Location, lot size, timeline, budget, anything that helps.",
+    "button_label": "Send message",
+    "note": "We reply within one business day. You can also call or text us.",
+    "success_message": "Thanks, we got your message and will be in touch within one business day."
+  },
+  "footer_left": "Aone Development LLC · Atlanta, Georgia",
+  "footer_right": "New construction · Duplexes · Subdivisions · Build-to-rent",
+  "footer_links": []
+}

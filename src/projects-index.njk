@@ -1,0 +1,25 @@
+---
+layout: base.njk
+title: Projects
+permalink: /projects/
+---
+<section class="page-hero dark">
+  <div class="wrap">
+    <p class="eyebrow">{{ home.projects.eyebrow }}</p>
+    <h1>{{ home.projects.heading }}</h1>
+    <p class="lede">{{ home.projects.text }}</p>
+  </div>
+</section>
+<section class="projects">
+  <div class="wrap">
+    <div class="filters" role="group" aria-label="Filter projects">
+      <button type="button" class="chip on" data-filter="">All</button>
+      {% for s in ["For Sale", "Under Construction", "Upcoming", "Completed", "Sold"] %}
+      {% if collections.projects | byStatus([s]) | length %}<button type="button" class="chip" data-filter="{{ s }}">{{ s }}</button>{% endif %}
+      {% endfor %}
+    </div>
+    <div class="proj-grid" id="all-projects">
+      {% for proj in collections.projects %}{% include "partials/project-card.njk" %}{% endfor %}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,10 @@
+<div class="panel">
+  <h2>{{ pn.title }}</h2>
+  {% if pn.text %}<p>{{ pn.text }}</p>{% endif %}
+  {% if pn.checks and pn.checks.length %}
+  <ul class="checks">
+    {% for c in pn.checks %}<li>{{ c }}</li>{% endfor %}
+  </ul>
+  {% endif %}
+  {% if pn.button_label %}<a class="btn btn-amber" href="{{ pn.button_link or '#contact' }}"{% if pn.form_topic %} data-topic="{{ pn.form_topic }}"{% endif %}>{{ pn.button_label }}</a>{% endif %}
+</div>

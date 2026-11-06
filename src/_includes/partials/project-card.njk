@@ -1,0 +1,15 @@
+{%- set p = proj.data -%}
+<article class="proj" data-status="{{ p.status }}">
+  <a class="draw{% if p.main_photo %} has-photo{% endif %}" href="{{ proj.url }}" aria-label="{{ p.title }}">
+    <span class="pill {{ p.status | pillClass }}">{{ p.status }}</span>
+    {% if p.main_photo %}<img src="{{ p.main_photo }}" alt="{{ p.title }}" loading="lazy">
+    {% else %}{% set kind = p.type | drawingFor %}{% include "partials/drawing.njk" %}{% endif %}
+  </a>
+  <div class="body">
+    <p class="where">{{ p.address }}{% if p.neighborhood %} · {{ p.neighborhood }}{% endif %}</p>
+    <h3><a href="{{ proj.url }}">{{ p.title }}</a></h3>
+    {% if p.summary %}<p>{{ p.summary }}</p>{% endif %}
+    {% include "partials/specs.njk" %}
+    <a class="more" href="{{ proj.url }}">View project →</a>
+  </div>
+</article>
