@@ -13,8 +13,27 @@ highlights:
   - 2 units · 2 bed / 2 bath each
   - Private bath per bedroom
   - Unfinished basement (~590 sf)
-main_photo: /images/uploads/220-maple-exterior.webp
-gallery: []
+main_photo: /images/uploads/01-front-daytime-v2.jpg
+gallery:
+  - image: /images/uploads/01-front-daytime-v2.jpg
+  - image: /images/uploads/19_220_Maple.jpg
+  - image: /images/uploads/03_220_Maple.jpg
+  - image: /images/uploads/02_220_Maple.jpg
+  - image: /images/uploads/04_220_Maple.jpg
+  - image: /images/uploads/05_220_Maple.jpg
+  - image: /images/uploads/06_220_Maple.jpg
+  - image: /images/uploads/07_220_Maple.jpg
+  - image: /images/uploads/08_220_Maple.jpg
+  - image: /images/uploads/09_220_Maple.jpg
+  - image: /images/uploads/10_220_Maple.jpg
+  - image: /images/uploads/11_220_Maple.jpg
+  - image: /images/uploads/12_220_Maple.jpg
+  - image: /images/uploads/13_220_Maple.jpg
+  - image: /images/uploads/14_220_Maple.jpg
+  - image: /images/uploads/15_220_Maple.jpg
+  - image: /images/uploads/16_220_Maple.jpg
+  - image: /images/uploads/17_220_Maple.jpg
+  - image: /images/uploads/18_220_Maple.jpg
 floor_plans:
   - image: /images/uploads/220-maple-floor-plans.png
     caption: Unit layouts (both floors)
