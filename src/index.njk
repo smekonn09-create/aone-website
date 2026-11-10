@@ -7,8 +7,8 @@ permalink: /
   <div class="hero-bg" aria-hidden="true">{% for u in h.backgrounds %}<div class="hero-slide{% if loop.first %} on{% endif %}" style="background-image:url('{{ u.image or u }}')"></div>{% endfor %}</div>
   <div class="wrap hero-grid">
     <div>
-      <p class="eyebrow">{{ h.eyebrow }}</p>
-      <h1>{{ h.headline_start }} {% if h.headline_gold %}<em>{{ h.headline_gold }}</em> {% endif %}{{ h.headline_end }}</h1>
+      <p class="eyebrow">{% for part in h.eyebrow.split(" · ") %}{% if not loop.first %}<span class="sep" aria-hidden="true"></span> {% endif %}{{ part }}{% endfor %}</p>
+      <h1>{{ h.headline_start | escape | replace(" / ", "<br>") | safe }} {% if h.headline_gold %}<em>{{ h.headline_gold }}</em> {% endif %}{{ h.headline_end }}</h1>
       <p class="lede">{{ h.text }}</p>
       <div class="hero-ctas">{% set buttons = h.buttons %}{% set dark = true %}{% include "partials/buttons.njk" %}</div>
     </div>
