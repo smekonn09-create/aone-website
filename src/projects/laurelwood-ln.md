@@ -19,6 +19,7 @@ gallery:
     caption: Rear elevation and covered patio
   - image: /images/uploads/laurelwood-side.jpg
     caption: Side elevation and terrace
+tour_url: https://tour.aonedevelopment.com/laurelwood/
 link_label: ""
 link_url: ""
 one_pager: ""
