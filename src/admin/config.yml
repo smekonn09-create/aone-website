@@ -299,7 +299,8 @@ collections:
               - { label: Headline – end, name: headline_end, widget: string }
               - { label: Text, name: text, widget: text }
               - *buttons
-              - { label: "Photo (optional, replaces the gold drawing)", name: image, widget: image, required: false }
+              - { label: "Photo (optional, replaces the animated drawing)", name: image, widget: image, required: false }
+              - { label: "Background photos (rotate behind the top section)", name: backgrounds, widget: list, required: false, fields: [{ label: Photo, name: image, widget: image }] }
               - { label: Caption left, name: caption_left, widget: string, required: false }
               - { label: Caption right, name: caption_right, widget: string, required: false }
           - label: “Who we work with” strip

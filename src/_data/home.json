@@ -6,20 +6,62 @@
     "headline_end": "Atlanta.",
     "text": "Aone Development builds single-family homes, duplexes and small subdivisions on infill lots across Atlanta's westside and beyond. We work with investors, home buyers, landowners and lenders from lot to keys.",
     "buttons": [
-      { "label": "See our projects", "link": "/#projects", "style": "gold" },
-      { "label": "Partner with us", "link": "/#partners", "style": "outline" }
+      {
+        "label": "See our projects",
+        "link": "/#projects",
+        "style": "gold"
+      },
+      {
+        "label": "Partner with us",
+        "link": "/#partners",
+        "style": "outline"
+      }
     ],
     "image": "",
-    "caption_left": "FRONT ELEVATION · SINGLE-FAMILY INFILL",
-    "caption_right": "VINE CITY, ATLANTA"
+    "caption_left": "MODERN INFILL · LOT TO KEYS",
+    "caption_right": "ATLANTA, GEORGIA",
+    "backgrounds": [
+      {
+        "image": "https://images.unsplash.com/photo-1673324669026-e2409b9faf8d?w=1920&q=70&auto=format&fit=crop"
+      },
+      {
+        "image": "https://images.unsplash.com/photo-1663601460253-aba72eea6edf?w=1920&q=70&auto=format&fit=crop"
+      },
+      {
+        "image": "https://images.unsplash.com/photo-1575917649705-5b59aaa12e6b?w=1920&q=70&auto=format&fit=crop"
+      },
+      {
+        "image": "https://images.unsplash.com/photo-1634010727710-aeef03fa4cba?w=1920&q=70&auto=format&fit=crop"
+      }
+    ]
   },
   "audiences": {
     "show": true,
     "items": [
-      { "label": "Investors", "title": "Put capital to work", "text": "Partner on new construction you can sell or hold for rent.", "link": "/#partners" },
-      { "label": "Home buyers", "title": "Buy a new build", "text": "See finished and upcoming homes ready for owners and investors.", "link": "/#projects" },
-      { "label": "Landowners", "title": "Hire a builder", "text": "Have a lot or a plan? We price it, permit it and build it.", "link": "/#build" },
-      { "label": "Lenders", "title": "Fund a project", "text": "Draw schedules, guaranties and track record on request.", "link": "/#partners" }
+      {
+        "label": "Investors",
+        "title": "Put capital to work",
+        "text": "Partner on new construction you can sell or hold for rent.",
+        "link": "/#partners"
+      },
+      {
+        "label": "Home buyers",
+        "title": "Buy a new build",
+        "text": "See finished and upcoming homes ready for owners and investors.",
+        "link": "/#projects"
+      },
+      {
+        "label": "Landowners",
+        "title": "Hire a builder",
+        "text": "Have a lot or a plan? We price it, permit it and build it.",
+        "link": "/#build"
+      },
+      {
+        "label": "Lenders",
+        "title": "Fund a project",
+        "text": "Draw schedules, guaranties and track record on request.",
+        "link": "/#partners"
+      }
     ]
   },
   "build": {
@@ -28,10 +70,26 @@
     "heading": "Infill housing sized for the lots Atlanta actually has.",
     "text": "Narrow city lots, tight setbacks and zoning overlays are where we do our best work. Every plan is designed to rent well, sell well, or both.",
     "items": [
-      { "icon": "house", "title": "Single-family homes", "text": "Ground-up homes on infill lots, from three-bedroom starter plans to multi-level homes with a private bath for every bedroom." },
-      { "icon": "duplex", "title": "Duplexes & stacked units", "text": "Side-by-side and stacked duplexes, including basement units, that put two income streams on one lot." },
-      { "icon": "lots", "title": "Lot splits & small subdivisions", "text": "Turning one parcel into buildable lots, then building on them. Concept plans, civil coordination and homes." },
-      { "icon": "grid", "title": "Build-to-rent & student housing", "text": "Room-by-room layouts with private baths, designed for long-term rental demand near Atlanta's universities." }
+      {
+        "icon": "house",
+        "title": "Single-family homes",
+        "text": "Ground-up homes on infill lots, from three-bedroom starter plans to multi-level homes with a private bath for every bedroom."
+      },
+      {
+        "icon": "duplex",
+        "title": "Duplexes & stacked units",
+        "text": "Side-by-side and stacked duplexes, including basement units, that put two income streams on one lot."
+      },
+      {
+        "icon": "lots",
+        "title": "Lot splits & small subdivisions",
+        "text": "Turning one parcel into buildable lots, then building on them. Concept plans, civil coordination and homes."
+      },
+      {
+        "icon": "grid",
+        "title": "Build-to-rent & student housing",
+        "text": "Room-by-room layouts with private baths, designed for long-term rental demand near Atlanta's universities."
+      }
     ]
   },
   "projects": {
@@ -48,11 +106,26 @@
     "heading": "One team from the dirt to the closing table.",
     "text": "We handle each stage in-house or with partners we have built with before, so investors and owners deal with one point of contact.",
     "steps": [
-      { "title": "Site & numbers", "text": "We check zoning, lot size and comps, then price the build before anyone commits." },
-      { "title": "Plans & permits", "text": "Our architect designs to the lot and the market. We take the plans through permitting." },
-      { "title": "Capital & lending", "text": "We work with private lenders and investors to put financing and a draw schedule in place." },
-      { "title": "Build", "text": "We run construction, inspections and draws, with regular updates to owners and lenders." },
-      { "title": "Sell or lease", "text": "Finished homes go to a buyer or get leased up so the owner can hold and refinance." }
+      {
+        "title": "Site & numbers",
+        "text": "We check zoning, lot size and comps, then price the build before anyone commits."
+      },
+      {
+        "title": "Plans & permits",
+        "text": "Our architect designs to the lot and the market. We take the plans through permitting."
+      },
+      {
+        "title": "Capital & lending",
+        "text": "We work with private lenders and investors to put financing and a draw schedule in place."
+      },
+      {
+        "title": "Build",
+        "text": "We run construction, inspections and draws, with regular updates to owners and lenders."
+      },
+      {
+        "title": "Sell or lease",
+        "text": "Finished homes go to a buyer or get leased up so the owner can hold and refinance."
+      }
     ]
   },
   "partners": {
@@ -64,7 +137,12 @@
       {
         "title": "For investors",
         "text": "Own new construction without running the build. You bring capital, we bring the site, the plans and the crew.",
-        "checks": ["New homes and duplexes in intown neighborhoods", "Exit by sale or hold as a rental and refinance", "Layouts designed for strong rental demand", "Regular updates from start to finish"],
+        "checks": [
+          "New homes and duplexes in intown neighborhoods",
+          "Exit by sale or hold as a rental and refinance",
+          "Layouts designed for strong rental demand",
+          "Regular updates from start to finish"
+        ],
         "button_label": "Talk about investing",
         "button_link": "/#contact",
         "form_topic": "Investing"
@@ -72,7 +150,12 @@
       {
         "title": "For lenders",
         "text": "We know what a lender needs to approve a draw and close a loan, and we have the paperwork ready.",
-        "checks": ["Detailed budgets and draw schedules", "Completion guaranty and GC agreements", "Builder's risk insurance in place", "Track record package available on request"],
+        "checks": [
+          "Detailed budgets and draw schedules",
+          "Completion guaranty and GC agreements",
+          "Builder's risk insurance in place",
+          "Track record package available on request"
+        ],
         "button_label": "Request our package",
         "button_link": "/#contact",
         "form_topic": "Lending"

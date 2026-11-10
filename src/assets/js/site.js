@@ -79,3 +79,44 @@
     });
   }
 })();
+
+// Homepage hero: rotate the Atlanta background photos
+(function () {
+  var slides = document.querySelectorAll('.hero-slide');
+  if (slides.length < 2) return;
+  var k = 0;
+  setInterval(function () {
+    slides[k].classList.remove('on');
+    k = (k + 1) % slides.length;
+    slides[k].classList.add('on');
+  }, 6500);
+})();
+
+// Homepage hero: animated drawing of a home being built, on repeat
+(function () {
+  var svg = document.querySelector('svg.hb');
+  if (!svg) return;
+  var parts = svg.querySelectorAll('[data-t]');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function showAll() {
+    parts.forEach(function (el) { if (!el.hasAttribute('data-off')) el.classList.add('on'); });
+    svg.classList.add('clad', 'lit');
+  }
+  if (reduce) { showAll(); return; }
+  var timers = [];
+  function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+  function run() {
+    timers.forEach(clearTimeout); timers = [];
+    svg.classList.remove('out', 'clad', 'lit');
+    parts.forEach(function (el) { el.classList.remove('on'); });
+    parts.forEach(function (el) {
+      later(function () { el.classList.add('on'); }, +el.getAttribute('data-t'));
+      if (el.hasAttribute('data-off')) later(function () { el.classList.remove('on'); }, +el.getAttribute('data-off'));
+    });
+    later(function () { svg.classList.add('clad'); }, 6300);
+    later(function () { svg.classList.add('lit'); }, 9000);
+    later(function () { svg.classList.add('out'); }, 12500);
+    later(run, 13400);
+  }
+  run();
+})();
