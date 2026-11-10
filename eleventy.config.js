@@ -22,6 +22,7 @@ export default function (eleventyConfig) {
       "Completed": "done",
       "Upcoming": "planning",
       "Sold": "sold",
+      "Custom Design": "planning",
     };
     return map[status] || "planning";
   });

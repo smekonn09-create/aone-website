@@ -1,17 +1,37 @@
 ---
-title: Two-lot subdivision
+title: Modern custom home
 address: Laurelwood Ln
 neighborhood: Alpharetta
-status: Upcoming
-type: Subdivision / Lots
-summary: One existing parcel divided into two buildable lots, with a new home planned on each. Plans are in design now.
+status: Custom Design
+type: Single-family
+summary: A two-story modern custom home designed for a private client in Alpharetta, with stone-clad entry walls, floor-to-ceiling glass, a covered outdoor living room and an upper terrace.
 price: ""
 highlights:
-  - 2 lots
-  - New homes
+  - Custom design
+  - Indoor-outdoor living
+  - Upper terrace
   - North Fulton
-main_photo: ""
-gallery: []
+main_photo: /images/uploads/laurelwood-front.jpg
+gallery:
+  - image: /images/uploads/laurelwood-front.jpg
+    caption: Front elevation
+  - image: /images/uploads/laurelwood-rear.jpg
+    caption: Rear elevation and covered patio
+  - image: /images/uploads/laurelwood-side.jpg
+    caption: Side elevation and terrace
+link_label: ""
+link_url: ""
+one_pager: ""
 featured: false
-order: 4
+order: 6
 ---
+## The project
+
+A custom residence designed for a client in North Fulton. The design pairs warm stone with clean stucco planes and flat-roof lines, anchored by a two-story glass entry.
+
+## Design highlights
+
+- Double-height foyer framed in stone and glass
+- Great room that opens fully to a covered outdoor living area
+- Upper terrace with glass railings
+- Two-car garage with frosted glass doors

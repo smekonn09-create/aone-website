@@ -57,7 +57,7 @@ collections:
       - label: Status
         name: status
         widget: select
-        options: [Upcoming, Coming Soon, Under Construction, For Sale, Completed, Sold]
+        options: [Upcoming, Coming Soon, Under Construction, For Sale, Completed, Sold, Custom Design]
         default: Upcoming
       - label: Project type
         name: type
@@ -230,7 +230,7 @@ collections:
               - { label: Small gold label, name: eyebrow, widget: string, required: false }
               - { label: Heading, name: heading, widget: string, required: false }
               - { label: Intro text, name: intro, widget: text, required: false }
-              - { label: Only show these statuses, name: statuses, widget: select, multiple: true, required: false, options: [Upcoming, Coming Soon, Under Construction, For Sale, Completed, Sold], hint: "Leave empty to show all." }
+              - { label: Only show these statuses, name: statuses, widget: select, multiple: true, required: false, options: [Upcoming, Coming Soon, Under Construction, For Sale, Completed, Sold, Custom Design], hint: "Leave empty to show all." }
               - { label: How many to show, name: how_many, widget: number, value_type: int, default: 4 }
           - label: Downloads (PDFs)
             name: downloads
