@@ -92,31 +92,32 @@
   }, 6500);
 })();
 
-// Homepage hero: animated drawing of a home being built, on repeat
+// Homepage hero: animated construction scene, on repeat
 (function () {
   var svg = document.querySelector('svg.hb');
   if (!svg) return;
   var parts = svg.querySelectorAll('[data-t]');
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function showAll() {
-    parts.forEach(function (el) { if (!el.hasAttribute('data-off')) el.classList.add('on'); });
+  if (reduce) {
+    parts.forEach(function (el) { if (!el.hasAttribute('data-off') && !el.hasAttribute('data-gone')) el.classList.add('on'); });
     svg.classList.add('clad', 'lit');
+    return;
   }
-  if (reduce) { showAll(); return; }
   var timers = [];
   function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
   function run() {
     timers.forEach(clearTimeout); timers = [];
     svg.classList.remove('out', 'clad', 'lit');
-    parts.forEach(function (el) { el.classList.remove('on'); });
+    parts.forEach(function (el) { el.classList.remove('on', 'gone'); });
     parts.forEach(function (el) {
       later(function () { el.classList.add('on'); }, +el.getAttribute('data-t'));
       if (el.hasAttribute('data-off')) later(function () { el.classList.remove('on'); }, +el.getAttribute('data-off'));
+      if (el.hasAttribute('data-gone')) later(function () { el.classList.add('gone'); }, +el.getAttribute('data-gone'));
     });
-    later(function () { svg.classList.add('clad'); }, 6800);
-    later(function () { svg.classList.add('lit'); }, 10800);
-    later(function () { svg.classList.add('out'); }, 14500);
-    later(run, 15400);
+    later(function () { svg.classList.add('clad'); }, 9400);
+    later(function () { svg.classList.add('lit'); }, 12300);
+    later(function () { svg.classList.add('out'); }, 16800);
+    later(run, 17700);
   }
   run();
 })();
