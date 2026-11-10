@@ -23,6 +23,7 @@ gallery:
 floor_plans:
   - image: /images/uploads/hampton-floor-plans.png
     caption: First, second and third floor plans
+tour_url: https://tour.aonedevelopment.com/hampton/
 link_label: ""
 link_url: ""
 one_pager: ""
