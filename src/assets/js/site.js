@@ -113,10 +113,10 @@
       later(function () { el.classList.add('on'); }, +el.getAttribute('data-t'));
       if (el.hasAttribute('data-off')) later(function () { el.classList.remove('on'); }, +el.getAttribute('data-off'));
     });
-    later(function () { svg.classList.add('clad'); }, 6300);
-    later(function () { svg.classList.add('lit'); }, 9000);
-    later(function () { svg.classList.add('out'); }, 12500);
-    later(run, 13400);
+    later(function () { svg.classList.add('clad'); }, 6800);
+    later(function () { svg.classList.add('lit'); }, 10800);
+    later(function () { svg.classList.add('out'); }, 14500);
+    later(run, 15400);
   }
   run();
 })();

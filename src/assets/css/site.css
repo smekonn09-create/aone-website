@@ -293,10 +293,14 @@ section.blk-tight{padding:40px 0}
 .hb .f.on{opacity:1}
 .hb .g{transform:scaleY(0);transform-box:fill-box;transform-origin:50% 100%;transition:transform .45s ease,opacity .8s ease}
 .hb .g.on{transform:scaleY(1)}
+.hb.clad .stud{opacity:0}
 .hb .wall{fill:#163638;fill-opacity:0;transition:fill-opacity .9s ease,stroke-dashoffset 1s ease}
 .hb.clad .wall{fill-opacity:1}
 .hb .glass{fill:#c9a961;fill-opacity:.08;transition:fill-opacity 1.2s ease}
-.hb.lit .glass{fill-opacity:.4}
+.hb.lit .glass{fill-opacity:.42}
+.hb .band{fill:#c9a961;fill-opacity:.55}
+.hb .glow{opacity:0;transition:opacity 1.2s ease}
+.hb.lit .glow{opacity:1}
 .hb{transition:opacity .7s ease}
 .hb.out{opacity:0}
 @media (prefers-reduced-motion:reduce){.hero-slide{animation:none}}
