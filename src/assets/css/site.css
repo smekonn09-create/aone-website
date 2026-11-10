@@ -304,3 +304,31 @@ section.blk-tight{padding:40px 0}
 .hb{transition:opacity .7s ease}
 .hb.out{opacity:0}
 @media (prefers-reduced-motion:reduce){.hero-slide{animation:none}}
+
+/* 3D walkthrough: call-to-action card on project pages */
+.tour-cta{position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:22px;margin:28px 0 8px;padding:34px 32px;color:#fff;text-decoration:none;overflow:hidden;isolation:isolate;border:1px solid #2a5052;background:var(--ink)}
+.tour-cta::before{content:"";position:absolute;inset:0;z-index:-2;background:var(--bg,none) center/cover no-repeat;transform:scale(1.04);transition:transform .8s ease}
+.tour-cta::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(22,52,54,.94),rgba(22,52,54,.78) 55%,rgba(22,52,54,.55))}
+.tour-cta:hover::before{transform:scale(1.09)}
+.tour-play{position:relative;width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:var(--amber);color:var(--ink);box-shadow:0 0 0 0 rgba(201,169,97,.55);animation:tourPulse 2.4s ease-out infinite}
+.tour-play svg{width:26px;height:26px;margin-left:3px}
+@keyframes tourPulse{0%{box-shadow:0 0 0 0 rgba(201,169,97,.55)}70%{box-shadow:0 0 0 18px rgba(201,169,97,0)}100%{box-shadow:0 0 0 0 rgba(201,169,97,0)}}
+.tour-copy{display:flex;flex-direction:column;gap:6px}
+.tour-kicker{font:500 11.5px/1 var(--mono);letter-spacing:.28em;text-transform:uppercase;color:var(--amber)}
+.tour-title{font:600 clamp(26px,3vw,34px)/1.1 var(--display)}
+.tour-sub{color:#cfd3d8;font-size:15.5px}
+.tour-go{font:600 13px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(201,169,97,.7);padding:14px 18px;white-space:nowrap;transition:background .3s,color .3s}
+.tour-cta:hover .tour-go{background:var(--amber);color:var(--ink)}
+@media (max-width:700px){.tour-cta{grid-template-columns:auto 1fr;padding:26px 22px}.tour-go{grid-column:1/-1;text-align:center}}
+@media (prefers-reduced-motion:reduce){.tour-play{animation:none}}
+
+/* 3D walkthrough: full page */
+.tour-page{background:var(--ink)}
+.tour-bar{border-bottom:1px solid #2a5052;color:#fff}
+.tour-bar-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:12px;padding-bottom:12px}
+.tour-back{color:#cfd3d8;text-decoration:none;font:500 13px/1 var(--mono);letter-spacing:.06em}
+.tour-back:hover{color:var(--amber)}
+.tour-label{font:500 11.5px/1 var(--mono);letter-spacing:.28em;text-transform:uppercase;color:var(--amber)}
+.tour-ask{padding:11px 16px}
+.tour-frame{display:block;width:100%;height:calc(100vh - 140px);min-height:560px;border:0;background:#f3f1ec}
+@media (max-width:700px){.tour-label{display:none}.tour-frame{height:calc(100svh - 130px)}}

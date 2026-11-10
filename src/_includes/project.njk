@@ -21,6 +21,17 @@ layout: base.njk
         {% if main_photo %}<img src="{{ main_photo }}" alt="{{ title }}">
         {% else %}{% set kind = type | drawingFor %}{% include "partials/drawing.njk" %}{% endif %}
       </div>
+      {% if tour_url %}
+      <a class="tour-cta" href="/projects/{{ page.fileSlug }}/tour/"{% if main_photo %} style="--bg:url('{{ main_photo }}')"{% endif %}>
+        <span class="tour-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>
+        <span class="tour-copy">
+          <span class="tour-kicker">Interactive 3D walkthrough</span>
+          <span class="tour-title">Step inside this home</span>
+          <span class="tour-sub">Explore every floor, room by room, from any device.</span>
+        </span>
+        <span class="tour-go">Start the tour <span aria-hidden="true">→</span></span>
+      </a>
+      {% endif %}
       {% if content | trim %}<div class="prose">{{ content | safe }}</div>{% endif %}
       {% if floor_plans and floor_plans.length %}
       <h2 class="gallery-title">Floor plans</h2>
@@ -45,6 +56,7 @@ layout: base.njk
         {% include "partials/specs.njk" %}
         <div class="side-actions">
           <a class="btn btn-amber" href="/?topic={% if status == 'For Sale' %}Buying%20a%20home{% else %}Investing{% endif %}&about={{ address | urlencode }}#contact">Ask about this project</a>
+          {% if tour_url %}<a class="btn btn-outline" href="/projects/{{ page.fileSlug }}/tour/">Take the 3D tour</a>{% endif %}
           {% if link_url %}<a class="btn btn-outline" href="{{ link_url }}" target="_blank" rel="noopener">{{ link_label or "More info" }}</a>{% endif %}
           {% if one_pager %}<a class="btn btn-outline" href="{{ one_pager }}" download>Download one-pager (PDF)</a>{% endif %}
         </div>

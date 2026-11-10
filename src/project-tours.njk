@@ -1,0 +1,18 @@
+---js
+{
+  layout: "base.njk",
+  pagination: { data: "collections.projects", size: 1, alias: "proj", before: (items) => items.filter((p) => p.data.tour_url) },
+  permalink: (data) => `/projects/${data.proj.page.fileSlug}/tour/`,
+  eleventyComputed: { title: (data) => `3D walkthrough · ${data.proj.data.address}` }
+}
+---
+<section class="tour-page">
+  <div class="tour-bar">
+    <div class="wrap tour-bar-in">
+      <a class="tour-back" href="{{ proj.url }}">← {{ proj.data.address }}</a>
+      <span class="tour-label">3D walkthrough{% if proj.data.neighborhood %} · {{ proj.data.neighborhood }}{% endif %}</span>
+      <a class="btn btn-amber tour-ask" href="/?topic={% if proj.data.status == 'For Sale' %}Buying%20a%20home{% else %}Investing{% endif %}&about={{ proj.data.address | urlencode }}#contact">Ask about this home</a>
+    </div>
+  </div>
+  <iframe class="tour-frame" src="{{ proj.data.tour_url }}" title="3D walkthrough of {{ proj.data.address }}" allow="fullscreen; xr-spatial-tracking; accelerometer; gyroscope" allowfullscreen loading="eager"></iframe>
+</section>

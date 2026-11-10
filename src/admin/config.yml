@@ -94,6 +94,7 @@ collections:
           - { label: Caption, name: caption, widget: string, required: false, hint: "Example: Main level" }
       - { label: Full description, name: body, widget: markdown, required: false, hint: "Optional. Longer write-up shown on the project's own page." }
       - { label: Extra link button text, name: link_label, widget: string, required: false, hint: "Example: View the listing, Watch the video" }
+      - { label: "3D walkthrough link (optional)", name: tour_url, widget: string, required: false, hint: "Paste the tour link, e.g. https://tour.aonedevelopment.com/943-garibaldi/. Adds a 3D walkthrough section to the page." }
       - { label: Extra link URL, name: link_url, widget: string, required: false, hint: "Paste the full link, starting with https://" }
       - { label: One-pager (PDF), name: one_pager, widget: file, required: false, hint: "Optional. Visitors can download it from the project page." }
       - { label: Featured (show first), name: featured, widget: boolean, default: false }
